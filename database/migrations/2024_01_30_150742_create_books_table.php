@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date('pubication_year');
             $table->integer('total_copies');
             $table->integer('available_copies');
+            $table->string('image');
             $table->softDeletes();
             $table->timestamps();
         });
