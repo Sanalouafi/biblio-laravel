@@ -19,6 +19,7 @@ class Book extends Model
         "publication_year",
         "total_copies",
         "available_copies",
+        "image",
         "created_at",
         "updated_at",
         "deleted_at",
