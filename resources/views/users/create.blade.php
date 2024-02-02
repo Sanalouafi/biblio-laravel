@@ -63,7 +63,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{route('users.index')}}"
+                            <a href="{{ route('users.index') }}"
                                 class="flex bg-white hover:bg-yellow-50 rounded-xl font-bold text-sm text-gray-900 py-3 px-4">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
                                     fill="currentColor" class="text-lg mr-4" viewBox="0 0 16 16">
@@ -119,53 +119,47 @@
         <div class="px-6 py-8">
             <div class="max-w-100 ">
                 <div class="bg-white rounded-3xl p-8 mb-5">
-                    <h1 class="text-3xl font-bold  text-center">Show book</h1>
+                    <h1 class="text-3xl font-bold mb-10 text-center">Add new book</h1>
 
-                    <div class="flex flex-col md:flex-row h-screen items-center">
-                        <div class="bg-indigo-600 hidden lg:block w-1/2 md:w-1/2 xl:w-2/3 h-100">
-                            <img src="{{ Storage::url($book->image) }}" alt=""
-                                class="w-full h-full object-cover">
-                        </div>
+                    <form method="POST" action="{{ route('users.store') }}" class="w-full max-w-xl mx-auto bg-white rounded shadow-xl relative py-4">
+                        @csrf
 
-                        <div
-                            class="bg-white w-full md:max-w-md lg:max-w-full md:mx-auto md:mx-0 md:w-1/2 xl:w-1/3 h-screen px-6 lg:px-16 xl:px-12 flex flex-col items-center justify-center">
+                        <div class="py-2 px-4 md:px-8">
 
-                            <div class="w-full h-100 text-center">
-                                <div class="mb-6 font-bold text-4xl">
-                                    <h2><strong>{{ $book->title }}</strong></h2>
+                            <div class="bg-gray-200 rounded py-2">
+
+                                <div class="mb-1 p-2">
+                                    <input id="fullname" name="fullname" type="text" placeholder="fullname" required
+                                        class="w-full h-10 px-2 py-1 lg:px-4 lg:py-2 text-gray-700 bg-gray-100 text-xs lg:text-sm border border-gray-300 rounded-lg focus:outline-none focus:bg-white">
                                 </div>
-                                <div class="flex flex-col items-start space-y-4">
-                                    <div>
-                                        <strong>Description:</strong> {{ $book->description }}
-                                    </div>
-                                    <div>
-                                        <strong>Author:</strong> {{ $book->author }}
-                                    </div>
-                                    <div>
-                                        <strong>Genre:</strong> {{ $book->genre }}
-                                    </div>
-                                    <div>
-                                        <strong>Publication Year:</strong> {{ $book->publication_year }}
-                                    </div>
-                                    <div>
-                                        <strong>Total Copies:</strong> {{ $book->total_copies }}
-                                    </div>
-                                    <div>
-                                        <strong>Available Copies:</strong> {{ $book->available_copies }}
-                                    </div>
+                                <div class="mb-1 p-2">
+                                    <input id="lastname" name="last_name" type="text" placeholder="lastname"
+                                        required
+                                        class="w-full h-10 px-2 py-1 lg:px-4 lg:py-2 text-gray-700 bg-gray-100 text-xs lg:text-sm border border-gray-300 rounded-lg focus:outline-none focus:bg-white">
+                                </div>
+                                <div class="mb-1 p-2">
+                                    <input id="email" name="email" type="email" placeholder="email" required
+                                        class="w-full h-10 px-2 py-1 lg:px-4 lg:py-2 text-gray-700 bg-gray-100 text-xs lg:text-sm border border-gray-300 rounded-lg focus:outline-none focus:bg-white">
+                                </div>
+                                <div class="mb-1 p-2">
+                                    <input id="password" name="password" type="password" placeholder="password"
+                                        required
+                                        class="w-full h-10 px-2 py-1 lg:px-4 lg:py-2 text-gray-700 bg-gray-100 text-xs lg:text-sm border border-gray-300 rounded-lg focus:outline-none focus:bg-white">
                                 </div>
 
-                                <div class="mt-8">
-                                    <a href="{{ url()->previous() }}"
-                                        class="bg-blue-500  hover:bg-blue-700 text-white font-bold py-4 px-8 rounded">
-                                        Back
-                                    </a>
+
+
+                            </div>
+                            <div class="mt-4">
+                                <div class="w-full">
+                                    <button class="h-auto lg:h-12 text-xs py-1 lg:py-2 px-2 lg-px-4 text-white font-light tracking-wider bg-gray-900 rounded-lg uppercase w-full focus:outline-none focus:shadow-outline" type="submit">Send</button>
                                 </div>
                             </div>
                         </div>
+                    </form>
 
 
-                    </div>
+
                 </div>
             </div>
         </div>

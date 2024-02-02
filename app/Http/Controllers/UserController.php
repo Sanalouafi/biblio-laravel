@@ -12,6 +12,10 @@ class UserController extends Controller
         $users = User::all();
         return view('users.index', ['users' => $users]);
     }
+    public function show(User $user)
+    {
+        return view('users.show', ['user' => $user]);
+    }
     public function create()
     {
         return view('users.create');
@@ -26,11 +30,12 @@ class UserController extends Controller
             'password' => 'required|min:8',
             'role_id' => '',
         ]);
-        $validatedData['role_id'] = $validatedData['role_id'] ?? 2;
+        $validatedData['role_id'] = 2;
         $user = User::create($validatedData);
 
         return redirect()->route('users.index')->with('success', 'User created successfully.');
     }
+
     public function edit(User $user)
     {
         return view('users.edit', ['user' => $user]);

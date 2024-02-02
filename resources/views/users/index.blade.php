@@ -1,3 +1,4 @@
+</html>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +12,6 @@
 </head>
 
 <body class="relative bg-yellow-50 overflow-hidden max-h-screen">
-
     <style>
         .table {
             border-spacing: 0 15px;
@@ -56,17 +56,17 @@
                             <a href="{{ route('books.index') }}"
                                 class="flex items-center bg-yellow-200 rounded-xl font-bold text-sm text-yellow-900 py-3 px-4">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
-                                    fill="currentColor" class="bi bi-book-open text-lg mr-4" viewBox="0 0 16 16">
+                                    fill="currentColor" class="text-lg mr-4" viewBox="0 0 16 16">
                                     <path
-                                        d="M14.734 0A1.996 1.996 0 0 1 16 1.265V14.74a1.996 1.996 0 0 1-1.266 1.265L8 15.767l-6.734.238a1.996 1.996 0 0 1-1.265-1.266L0 1.265A1.996 1.996 0 0 1 1.266 0H14.73zM6.13 1.04C6.544.375 7.21 0 8 0c.79 0 1.456.375 1.87 1.04a2.5 2.5 0 0 0-1.74 0zM1 2.39L8 1l7 1.39v10.22l-7-1.39-7 1.39V2.39zM8 2a2 2 0 0 0-1.74 1.04l-.426.852.286.572.426-.852A2 2 0 0 0 8 2zm-6.144 9.712l5.217-1.036 1.036 5.217-5.217 1.036-1.036-5.217zM7 12l1-.25V3L7 2l-1 .75v8.5L7 12z" />
+                                        d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM5 4h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1zm-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zM5 8h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1zm0 2h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1z" />
                                 </svg>Books
                             </a>
                         </li>
                         <li>
-                            <a href="{{route('users.index')}}"
+                            <a href="{{ route('users.index') }}"
                                 class="flex bg-white hover:bg-yellow-50 rounded-xl font-bold text-sm text-gray-900 py-3 px-4">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
-                                    fill="currentColor" class="text-lg mr-4" viewBox="0 0 16 16">
+                                    fill="currentColor user" class="text-lg mr-4" viewBox="0 0 16 16">
                                     <path
                                         d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM5 4h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1zm-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zM5 8h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1zm0 2h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1z" />
                                 </svg>User
@@ -119,58 +119,55 @@
         <div class="px-6 py-8">
             <div class="max-w-100 ">
                 <div class="bg-white rounded-3xl p-8 mb-5">
-                    <h1 class="text-3xl font-bold  text-center">Show book</h1>
+                    <h1 class="text-3xl font-bold mb-10 text-center">User Section</h1>
 
-                    <div class="flex flex-col md:flex-row h-screen items-center">
-                        <div class="bg-indigo-600 hidden lg:block w-1/2 md:w-1/2 xl:w-2/3 h-100">
-                            <img src="{{ Storage::url($book->image) }}" alt=""
-                                class="w-full h-full object-cover">
+
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        <a href="{{ route('users.create') }}">Add new user</a>
+                    </button>
+                    <div class="col-span-12">
+                        <div class="overflow-auto lg:overflow-visible">
+                            <table class="table w-full text-gray-400 border-separate space-y-6 text-sm">
+                                <thead class="bg-light-800 text-gray-500">
+                                    <tr>
+                                        <th class="p-3">user </th>
+                                        <th class="p-3 text-left">Fullname</th>
+                                        <th class="p-3 text-left">Last name</th>
+                                        <th class="p-3 text-left">Email</th>
+                                        <th class="p-3 text-left">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($users as $user)
+                                        <tr class="bg-light-800">
+
+                                            <td class="p-3">{{ $user->id }}</td>
+                                            <td class="p-3">{{ $user->fullname }}</td>
+                                            <td class="p-3">{{ $user->last_name }}</td>
+                                            <td class="p-3">{{ $user->email }}</td>
+                                            <td class="p-3">
+                                                <form action="{{ route('users.destroy', $user->id) }}" method="POST"
+                                                    class="inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit"
+                                                        class="text-gray-400 hover:text-gray-100 ml-2">
+                                                        <i class="material-icons-round text-base">delete_outline</i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
-
-                        <div
-                            class="bg-white w-full md:max-w-md lg:max-w-full md:mx-auto md:mx-0 md:w-1/2 xl:w-1/3 h-screen px-6 lg:px-16 xl:px-12 flex flex-col items-center justify-center">
-
-                            <div class="w-full h-100 text-center">
-                                <div class="mb-6 font-bold text-4xl">
-                                    <h2><strong>{{ $book->title }}</strong></h2>
-                                </div>
-                                <div class="flex flex-col items-start space-y-4">
-                                    <div>
-                                        <strong>Description:</strong> {{ $book->description }}
-                                    </div>
-                                    <div>
-                                        <strong>Author:</strong> {{ $book->author }}
-                                    </div>
-                                    <div>
-                                        <strong>Genre:</strong> {{ $book->genre }}
-                                    </div>
-                                    <div>
-                                        <strong>Publication Year:</strong> {{ $book->publication_year }}
-                                    </div>
-                                    <div>
-                                        <strong>Total Copies:</strong> {{ $book->total_copies }}
-                                    </div>
-                                    <div>
-                                        <strong>Available Copies:</strong> {{ $book->available_copies }}
-                                    </div>
-                                </div>
-
-                                <div class="mt-8">
-                                    <a href="{{ url()->previous() }}"
-                                        class="bg-blue-500  hover:bg-blue-700 text-white font-bold py-4 px-8 rounded">
-                                        Back
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-
                     </div>
+
+
                 </div>
             </div>
         </div>
     </main>
 </body>
-
 
 </html>

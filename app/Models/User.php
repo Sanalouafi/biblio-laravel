@@ -29,7 +29,6 @@ class User extends Authenticatable
         "updated_at",
         "deleted_at",
     ];
-
     /**
      * The attributes that should be hidden for serialization.
      *
