@@ -94,6 +94,8 @@
             <div class="w-full mb-4">
                 <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
             </div>
+            <div class="flex flex-wrap">
+
             @foreach ($latestBooks as $book)
                 <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
                     <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
@@ -121,6 +123,7 @@
                     </div>
                 </div>
             @endforeach
+            </div>
 
         </div>
     </section>

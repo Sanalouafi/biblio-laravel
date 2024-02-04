@@ -26,7 +26,7 @@
         <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
             <div class="pl-4 flex items-center">
                 <a class="toggleColour text-black no-underline hover:no-underline font-bold text-2xl lg:text-4xl"
-                    href="{{route ('home')}}">
+                    href="{{ route('home') }}">
                     <img src="{{ asset('images/logo.png') }}" class="h-8 fill-current inline" alt=""
                         srcset="">
                     Book Land
@@ -46,11 +46,12 @@
                 <ul class="list-reset lg:flex justify-end flex-1 items-center">
 
                     <li class="mr-3">
-                        <a class="inline-block py-2 px-4 text-black font-bold no-underline"
-                            href="{{route ('show')}}">Books</a>
+                        <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
+                            href="{{ route('home') }}">Home</a>
                     </li>
                     <li class="mr-3">
-                        <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="{{route ('home')}}">reservation</a>
+                        <a class="inline-block py-2 px-4 text-black font-bold no-underline"
+                            href="{{ route('show') }}">Book</a>
                     </li>
                 </ul>
                 <button id="navAction"
@@ -69,34 +70,37 @@
             <div class="w-full mb-4">
                 <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
             </div>
-            @foreach ($books as $book)
-                <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-                    <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
-                        <img src="{{ Storage::url($book->image) }}" alt="book-imaage" class="w-full h-60" srcset="">
-                        <a href="{{ route('login') }}" class="flex flex-wrap mt-10 no-underline hover:no-underline">
-                            <p class="w-full text-gray-600 text-xs md:text-sm px-6">
-                                {{ $book->author }}
-                            </p>
-                            <div class="w-full font-bold text-xl text-gray-800 px-6">
-                                {{ $book->title }}
-                            </div>
-                            <p class="text-gray-800 text-base px-6 mb-5">
-                                {{ $book->description }}
+            <div class="flex flex-wrap">
 
-                            </p>
-                        </a>
-                    </div>
-                    <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
-                        <div class="flex items-center justify-start">
-                            <button
-                                class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-                                <a href="{{ route('login') }}">Reserve now</a>
-                            </button>
+                @foreach ($books as $book)
+                    <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+                        <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
+                            <img src="{{ Storage::url($book->image) }}" alt="book-imaage" class="w-full h-60"
+                                srcset="">
+                            <a href="{{ route('login') }}" class="flex flex-wrap mt-10 no-underline hover:no-underline">
+                                <p class="w-full text-gray-600 text-xs md:text-sm px-6">
+                                    {{ $book->author }}
+                                </p>
+                                <div class="w-full font-bold text-xl text-gray-800 px-6">
+                                    {{ $book->title }}
+                                </div>
+                                <p class="text-gray-800 text-base px-6 mb-5">
+                                    {{ $book->description }}
+
+                                </p>
+                            </a>
+                        </div>
+                        <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
+                            <div class="flex items-center justify-start">
+                                <button
+                                    class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+                                    <a href="{{ route('login') }}">Reserve now</a>
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            @endforeach
-
+                @endforeach
+            </div>
         </div>
     </section>
 

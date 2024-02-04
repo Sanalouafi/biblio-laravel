@@ -46,11 +46,11 @@
                 <ul class="list-reset lg:flex justify-end flex-1 items-center">
 
                     <li class="mr-3">
-                        <a class="inline-block py-2 px-4 text-black font-bold no-underline"
+                        <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
                             href="{{ route('user.index') }}">Books</a>
                     </li>
                     <li class="mr-3">
-                        <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
+                        <a class="inline-block py-2 px-4 text-black font-bold no-underline"
                             href="{{ route('reservations.index', ['user_id' => Auth::user()->id]) }}">
                             My Reservations
                         </a>
