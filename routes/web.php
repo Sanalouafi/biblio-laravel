@@ -25,8 +25,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/show', [HomeController::class, 'show'])->name('show');
 
 
-Route::resource('reservations', ReservationController::class);
 Route::middleware('auth')->group(function () {
+    Route::resource('reservations', ReservationController::class);
     Route::resource('user', UserController::class);
     Route::resource('users', AdminController::class);
     Route::resource('books', BookController::class);

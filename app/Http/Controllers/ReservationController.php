@@ -57,19 +57,26 @@ class ReservationController extends Controller
     }
 
     public function update(Request $request, Reservation $reservation)
-{
-    $validatedData = $request->validate([
-        'reservation_date' => 'required|date',
-        'return_date' => 'required|date|after_or_equal:reservation_date',
-        'is_returned' => 'boolean',
-        'user_id' => 'required|exists:users,id',
-        'book_id' => 'required|exists:books,id',
-    ]);
+    {
+        try {
+            $validatedData = $request->validate([
+                'reservation_date' => ['required', 'date'],
+                'return_date' => ['required', 'date', 'after_or_equal:reservation_date'],
+                'is_returned' => [0],
+                'user_id' => ['required', 'exists:users,id'],
+                'book_id' => ['required', 'exists:books,id'],
+            ]);
 
-    $reservation->update($validatedData);
 
-    return redirect()->route('reservations.index')->with('success', 'Reservation updated successfully.');
-}
+            $result = $reservation->update($validatedData);
+
+
+            return redirect()->route('reservations.index')->with('success', 'Reservation updated successfully.');
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+        }
+    }
+
 
 
 

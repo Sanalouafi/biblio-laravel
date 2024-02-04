@@ -94,7 +94,6 @@
                                         value="{{ $reservation->return_date }}"
                                         class="w-full h-10 mt-5 px-2 py-1 lg:px-4 lg:py-2 text-gray-700 bg-gray-100 text-xs lg:text-sm border border-gray-300 rounded-lg focus:outline-none focus:bg-white">
                                 </div>
-                                <input type="hidden" name="is_returned" value="false">
                             </div>
                             <div class="mt-4">
                                 <div class="w-full">
