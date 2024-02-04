@@ -97,7 +97,7 @@
             @foreach ($latestBooks as $book)
                 <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
                     <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
-                        <img src="{{ Storage::url($book->image) }}" alt="book-imaage" srcset="">
+                        <img src="{{ Storage::url($book->image) }}" class="w-full h-60" alt="book-imaage" srcset="">
                         <a href="{{ route('login') }}" class="flex flex-wrap mt-10 no-underline hover:no-underline">
                             <p class="w-full text-gray-600 text-xs md:text-sm px-6">
                                 {{ $book->author }}

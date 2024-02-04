@@ -32,7 +32,7 @@ class AuthenticatedSessionController extends Controller
         if ($user->role->name === 'admin') {
             return redirect()->route('books.index');
         }
-        return redirect()->route('dashboard');
+        return redirect()->route('user.index');
     }
 
     /**

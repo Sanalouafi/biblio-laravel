@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->string('description');
             $table->date('reservation_date');
             $table->date('return_date');
-            $table->boolean('is_returned');
+            $table->boolean('is_returned')->default(false);
             $table->foreignId('user_id')
                 ->constrained()
                 ->onUpdate('cascade')

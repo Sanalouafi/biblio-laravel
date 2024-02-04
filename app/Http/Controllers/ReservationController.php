@@ -12,55 +12,66 @@ class ReservationController extends Controller
 
     public function index()
     {
-        $reservations = Reservation::all();
-        return view('reservations.index', ['reservations' => $reservations]);
+        $userReservations = Reservation::where('user_id', auth()->user()->id)->get();
+        return view('user.reservations.index', ['reservations' => $userReservations]);
     }
 
-    public function create()
+
+    public function create(Request $request)
     {
-        $users = User::all();
-        $books = Book::all();
-        return view('reservations.create', ['users' => $users, 'books' => $books]);
+        $user_id = $request->query('user_id');
+        $book_id = $request->query('book_id');
+
+        $user = User::findOrFail($user_id);
+        $book = Book::findOrFail($book_id);
+
+
+        return view('user.reservations.create', ['user' => $user, 'book' => $book]);
     }
+
+
 
     public function store(Request $request)
     {
         $validatedData = $request->validate([
             'description' => 'required',
             'reservation_date' => 'required|date',
-            'return_date' => 'required|date',
-            'is_returned' => 'required|boolean',
+            'return_date' => 'required|date|after_or_equal:reservation_date',
             'user_id' => 'required|exists:users,id',
             'book_id' => 'required|exists:books,id',
         ]);
 
         $reservation = Reservation::create($validatedData);
+        $book = Book::findOrFail($validatedData['book_id']);
+        $book->decrement('available_copies');
 
         return redirect()->route('reservations.index')->with('success', 'Reservation created successfully.');
     }
 
+
     public function edit(Reservation $reservation)
     {
-        $users = User::all();
-        $books = Book::all();
-        return view('reservations.edit', ['reservation' => $reservation, 'users' => $users, 'books' => $books]);
+        return view('user.reservations.edit', ['reservation' => $reservation]);
+
+
     }
 
     public function update(Request $request, Reservation $reservation)
-    {
-        $validatedData = $request->validate([
-            'description' => 'required',
-            'reservation_date' => 'required|date',
-            'return_date' => 'required|date',
-            'is_returned' => 'required|boolean',
-            'user_id' => 'required|exists:users,id',
-            'book_id' => 'required|exists:books,id',
-        ]);
+{
+    $validatedData = $request->validate([
+        'reservation_date' => 'required|date',
+        'return_date' => 'required|date|after_or_equal:reservation_date',
+        'is_returned' => 'boolean',
+        'user_id' => 'required|exists:users,id',
+        'book_id' => 'required|exists:books,id',
+    ]);
 
-        $reservation->update($validatedData);
+    $reservation->update($validatedData);
 
-        return redirect()->route('reservations.index')->with('success', 'Reservation updated successfully.');
-    }
+    return redirect()->route('reservations.index')->with('success', 'Reservation updated successfully.');
+}
+
+
 
     public function destroy(Reservation $reservation)
     {
