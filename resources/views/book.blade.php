@@ -25,8 +25,8 @@
     <nav id="header" class="fixed w-full z-30 top-0 text-white">
         <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
             <div class="pl-4 flex items-center">
-                <a class="toggleColour text-white no-underline hover:no-underline font-bold text-2xl lg:text-4xl"
-                    href="#">
+                <a class="toggleColour text-black no-underline hover:no-underline font-bold text-2xl lg:text-4xl"
+                    href="{{route ('home')}}">
                     <img src="{{ asset('images/logo.png') }}" class="h-8 fill-current inline" alt=""
                         srcset="">
                     Book Land
@@ -45,10 +45,10 @@
                 id="nav-content">
                 <ul class="list-reset lg:flex justify-end flex-1 items-center">
                     <li class="mr-3">
-                        <a class="inline-block py-2 px-4 text-black font-bold no-underline" href="#">Home</a>
+                        <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4" href="{{route ('home')}}">Home</a>
                     </li>
                     <li class="mr-3">
-                        <a class="inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"
+                        <a class="inline-block py-2 px-4 text-black font-bold no-underline"
                             href="{{route ('show')}}">Books</a>
                     </li>
                 </ul>
@@ -60,32 +60,6 @@
         </div>
         <hr class="border-b border-gray-100 opacity-25 my-0 py-0" />
     </nav>
-    <!--Hero-->
-    <div class="pt-24">
-        <div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
-            <!--Left Col-->
-            <div class="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
-                <p class="uppercase tracking-loose w-full">Explore Our Bibliotheque</p>
-                <h1 class="my-4 text-5xl font-bold leading-tight">
-                    Discover a World of Knowledge in Our Library!
-                </h1>
-                <p class="leading-normal text-2xl mb-8">
-                    Immerse yourself in a rich collection of books and resources. Expand your horizons with our diverse
-                    selection.
-                </p>
-                <button
-                    class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-                    <a href="{{ route('register') }}">Get Started</a>
-                </button>
-            </div>
-
-            <!--Right Col-->
-            <div class="w-full md:w-3/5 py-6 text-center">
-                <img class="w-full md:w-4/5 z-50" src="{{ asset('images/hero.png') }}" />
-            </div>
-        </div>
-    </div>
-
     <section class="bg-white border-b py-8">
         <div class="container mx-auto flex flex-wrap pt-4 pb-12">
             <h2 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
@@ -94,7 +68,7 @@
             <div class="w-full mb-4">
                 <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
             </div>
-            @foreach ($latestBooks as $book)
+            @foreach ($books as $book)
                 <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
                     <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
                         <img src="{{ Storage::url($book->image) }}" alt="book-imaage" srcset="">
@@ -186,7 +160,7 @@
                 navaction.classList.remove("bg-white");
                 navaction.classList.add("gradient");
                 navaction.classList.remove("text-gray-800");
-                navaction.classList.add("text-white");
+                navaction.classList.add("text-black");
                 //Use to switch toggleColour colours
                 for (var i = 0; i < toToggle.length; i++) {
                     toToggle[i].classList.add("text-gray-800");
